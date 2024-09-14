@@ -28,7 +28,6 @@ public:
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Node* node = new Node();
-                node->id = index;
                 node->x = i;
                 node->y = j;
                 index++;
