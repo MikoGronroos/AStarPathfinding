@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Users\miko3\OneDrive\Tiedostot\Programming Projects\C++\PathfindingProject\PathfindingProject\Pathfinding.h(20,38): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  0 of 13 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  PathfindingProject.vcxproj -> C:\Users\miko3\OneDrive\Tiedostot\Programming Projects\C++\PathfindingProject\x64\Release\PathfindingProject.dll

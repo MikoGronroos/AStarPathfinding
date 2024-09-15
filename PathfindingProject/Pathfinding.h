@@ -82,6 +82,6 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
         finalPath.push_back(node);
         node = node->previousNode;
     }
-    std::reverse(finalPath.begin(), finalPath.end());
+    std::ranges::reverse(finalPath.begin(), finalPath.end());
     return finalPath;
 }

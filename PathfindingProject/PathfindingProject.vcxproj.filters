@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Example2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Pathfinding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Example1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
