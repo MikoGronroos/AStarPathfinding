@@ -16,7 +16,7 @@ public:
     bool isBlocked = false;
 };
 
-float calculate_distance(Node* to, Node* from) {
+float calculate_distance(const Node* to, const Node* from) {
     return pow((to->x - from->x), 2) + pow((to->y - from->y), 2);
 }
 
@@ -67,7 +67,7 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
                 }
                 if (addNode) {
                     pushBack->previousNode = nextNode;
-                    pushBack->gCost = calculate_distance(startNode, pushBack);
+                    pushBack->gCost = nextNode->gCost + 10;
                     pushBack->hCost = calculate_distance(endNode, pushBack);
                     pushBack->fCost = pushBack->gCost + pushBack->hCost;
                     queue.push_back(pushBack);

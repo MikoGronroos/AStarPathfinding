@@ -5,11 +5,11 @@
 #include <vector>
 #include "Pathfinding.h"
 
-class Example1 {
+class Example3 {
 public:
     std::vector<Node*> map;
-    int width = 25;
-    int height = 25;
+    int width = 10;
+    int height = 10;
     Node* GetNode(int x, int y) {
         if (x > width - 1 || x < 0 || y > height - 1 || y < 0) {
             return NULL;
@@ -62,26 +62,7 @@ public:
 
         std::cout << "Determine Start and End nodes" << std::endl;
         Node* startNode = GetNode(5, 5);
-        Node* endNode = GetNode(13, 24);
-
-        GetNode(6, 5)->isBlocked = true;
-        GetNode(5, 6)->isBlocked = true;
-
-        GetNode(13, 23)->isBlocked = true;
-
-        GetNode(12, 7)->isBlocked = true;
-        GetNode(11, 7)->isBlocked = true;
-        GetNode(10, 7)->isBlocked = true;
-        GetNode(9, 7)->isBlocked = true;
-        GetNode(8, 7)->isBlocked = true;
-        GetNode(7, 7)->isBlocked = true;
-        GetNode(6, 7)->isBlocked = true;
-        GetNode(5, 7)->isBlocked = true;
-        GetNode(4, 7)->isBlocked = true;
-        GetNode(3, 7)->isBlocked = true;
-        GetNode(2, 7)->isBlocked = true;
-        GetNode(1, 7)->isBlocked = true;
-        GetNode(0, 7)->isBlocked = true;
+        Node* endNode = GetNode(9, 9);
 
         std::cout << "End and start node determined" << std::endl;
         std::cout << "Calculating costs" << std::endl;
