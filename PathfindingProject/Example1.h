@@ -7,92 +7,42 @@
 
 class Example1 {
 public:
-    std::vector<Node*> map;
-    int width = 25;
-    int height = 25;
-    Node* GetNode(int x, int y) {
-        if (x > width - 1 || x < 0 || y > height - 1 || y < 0) {
-            return NULL;
-        }
-        return map[x * height + y];
-    }
 
-    void CreateMap() {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Node* node = new Node();
-                node->x = i;
-                node->y = j;
-                map.push_back(node);
-            }
-        }
-        for (int i = 0; i < map.size(); i++) {
-            Node* node = map[i];
-            int x = node->x;
-            int y = node->y;
-            Node* previous = GetNode(x + 1, y);
-            if (previous != nullptr) {
-                node->nextNodes.push_back(previous);
-            }
-            previous = nullptr;
-            previous = GetNode(x, y + 1);
-            if (previous != nullptr) {
-                node->nextNodes.push_back(previous);
-            }
-            previous = nullptr;
-            previous = GetNode(x - 1, y);
-            if (previous != nullptr) {
-                node->nextNodes.push_back(previous);
-            }
-            previous = nullptr;
-            previous = GetNode(x, y - 1);
-            if (previous != nullptr) {
-                node->nextNodes.push_back(previous);
-            }
-        }
-    }
-
+    Map map = Map(25, 25);
 
     int Execute() {
-
-        std::cout << "Creating map" << std::endl;
-        CreateMap();
-
-        std::cout << "Map created" << std::endl;
-
         std::cout << "Determine Start and End nodes" << std::endl;
-        Node* startNode = GetNode(5, 5);
-        Node* endNode = GetNode(13, 24);
+        Node* startNode = map.GetNode(5, 5);
+        Node* endNode = map.GetNode(13, 24);
 
-        GetNode(6, 5)->isBlocked = true;
-        GetNode(5, 6)->isBlocked = true;
+        map.GetNode(6, 5)->isBlocked = true;
+        map.GetNode(5, 6)->isBlocked = true;
+        map.GetNode(13, 23)->isBlocked = true;
 
-        GetNode(13, 23)->isBlocked = true;
-
-        GetNode(12, 7)->isBlocked = true;
-        GetNode(11, 7)->isBlocked = true;
-        GetNode(10, 7)->isBlocked = true;
-        GetNode(9, 7)->isBlocked = true;
-        GetNode(8, 7)->isBlocked = true;
-        GetNode(7, 7)->isBlocked = true;
-        GetNode(6, 7)->isBlocked = true;
-        GetNode(5, 7)->isBlocked = true;
-        GetNode(4, 7)->isBlocked = true;
-        GetNode(3, 7)->isBlocked = true;
-        GetNode(2, 7)->isBlocked = true;
-        GetNode(1, 7)->isBlocked = true;
-        GetNode(0, 7)->isBlocked = true;
+        map.GetNode(12, 7)->isBlocked = true;
+        map.GetNode(11, 7)->isBlocked = true;
+        map.GetNode(10, 7)->isBlocked = true;
+        map.GetNode(9, 7)->isBlocked = true;
+        map.GetNode(8, 7)->isBlocked = true;
+        map.GetNode(7, 7)->isBlocked = true;
+        map.GetNode(6, 7)->isBlocked = true;
+        map.GetNode(5, 7)->isBlocked = true;
+        map.GetNode(4, 7)->isBlocked = true;
+        map.GetNode(3, 7)->isBlocked = true;
+        map.GetNode(2, 7)->isBlocked = true;
+        map.GetNode(1, 7)->isBlocked = true;
+        map.GetNode(0, 7)->isBlocked = true;
 
         std::cout << "End and start node determined" << std::endl;
         std::cout << "Calculating costs" << std::endl;
         std::vector<Node*> path = GetRoute(startNode, endNode);
         std::cout << "Route Gotten" << std::endl;
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < map.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < map.height; y++)
             {
                 bool isInPath = false;
-                Node* node = GetNode(x, y);
+                Node* node = map.GetNode(x, y);
                 for (int i = 0; i < path.size(); i++) {
                     if (path[i]->x == x && path[i]->y == y) {
                         isInPath = true;

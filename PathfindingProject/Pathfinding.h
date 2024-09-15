@@ -16,6 +16,61 @@ public:
     bool isBlocked = false;
 };
 
+class Map {
+public:
+    Map(int width, int height) {
+        this->width = width;
+        this->height = height;
+        CreateMap();
+    }
+    std::vector<Node*> map;
+    int width = 25;
+    int height = 25;
+
+    Node* GetNode(int x, int y) {
+        if (x > width - 1 || x < 0 || y > height - 1 || y < 0) {
+            return NULL;
+        }
+        return map[x * height + y];
+    }
+
+private:
+    void CreateMap() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Node* node = new Node();
+                node->x = i;
+                node->y = j;
+                map.push_back(node);
+            }
+        }
+        for (int i = 0; i < map.size(); i++) {
+            Node* node = map[i];
+            int x = node->x;
+            int y = node->y;
+            Node* previous = GetNode(x + 1, y);
+            if (previous != nullptr) {
+                node->nextNodes.push_back(previous);
+            }
+            previous = nullptr;
+            previous = GetNode(x, y + 1);
+            if (previous != nullptr) {
+                node->nextNodes.push_back(previous);
+            }
+            previous = nullptr;
+            previous = GetNode(x - 1, y);
+            if (previous != nullptr) {
+                node->nextNodes.push_back(previous);
+            }
+            previous = nullptr;
+            previous = GetNode(x, y - 1);
+            if (previous != nullptr) {
+                node->nextNodes.push_back(previous);
+            }
+        }
+    }
+};
+
 float calculate_distance(const Node* to, const Node* from) {
     return pow((to->x - from->x), 2) + pow((to->y - from->y), 2);
 }
