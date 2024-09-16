@@ -79,6 +79,7 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
     std::vector<Node*> path;
     std::vector<Node*> queue;
 
+    startNode->previousNode = nullptr;
     queue.push_back(startNode);
 
     while (true) {
