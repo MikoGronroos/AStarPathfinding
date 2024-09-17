@@ -79,6 +79,7 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
     std::vector<Node*> path;
     std::vector<Node*> queue;
 
+    startNode->gCost = 0;
     startNode->previousNode = nullptr;
     queue.push_back(startNode);
 
@@ -90,6 +91,9 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
             }
         }
         Node* nextNode = nullptr;
+        if (queue.size() <= currentSmallestCost) {
+            break;
+        }
         nextNode = queue[currentSmallestCost];
 
         path.push_back(nextNode);
@@ -133,11 +137,14 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
     }
 
     std::vector<Node*> finalPath;
-    Node* node = path.back();
-    while (node != nullptr) {
-        finalPath.push_back(node);
-        node = node->previousNode;
+
+    if (path.size() > 0) {
+        Node* node = path.back();
+        while (node != nullptr) {
+            finalPath.push_back(node);
+            node = node->previousNode;
+        }
+        std::ranges::reverse(finalPath.begin(), finalPath.end());
     }
-    std::ranges::reverse(finalPath.begin(), finalPath.end());
     return finalPath;
 }
