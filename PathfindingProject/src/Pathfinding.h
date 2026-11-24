@@ -3,6 +3,14 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <iostream>
+
+static int s_AllocationCount = 0;
+
+void* operator new(size_t size) {
+    s_AllocationCount++;
+    return malloc(size);
+}
 
 class Node {
 public:
@@ -146,5 +154,8 @@ std::vector<Node*> GetRoute(Node* startNode, Node* endNode) {
         }
         std::ranges::reverse(finalPath.begin(), finalPath.end());
     }
+
+    std::cout << s_AllocationCount << std::endl;
+
     return finalPath;
 }
